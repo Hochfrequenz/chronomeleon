@@ -1,4 +1,4 @@
-from mypackage.mymodule import MyClass
+from chronomeleon.mymodule import MyClass
 
 
 class TestMyClass:

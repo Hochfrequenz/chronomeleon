@@ -23,8 +23,21 @@ from chronomeleon.models import ChronoAssumption, MappingConfig
                 target=ChronoAssumption(
                     resolution=timedelta(seconds=1), is_end=True, is_inclusive_end=True, is_gastag_aware=False
                 ),
+                is_gas=True,
             ),
             True,
+        ),
+        pytest.param(
+            MappingConfig(
+                source=ChronoAssumption(
+                    resolution=timedelta(days=1), is_end=True, is_inclusive_end=True, is_gastag_aware=True
+                ),
+                target=ChronoAssumption(
+                    resolution=timedelta(seconds=1), is_end=True, is_inclusive_end=True, is_gastag_aware=False
+                ),
+                # is_gas=None # <-- implicit
+            ),
+            False,
         ),
     ],
 )

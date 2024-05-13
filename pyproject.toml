@@ -2,7 +2,7 @@
 name = "chronomeleon"
 description = "A python package to flexibly adapt start and end date(times) to your system background"
 license = { text = "MIT" }
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 authors = [{ name = "Hochfrequenz Unternehmensberatung GmbH", email = "info+github@hochfrequenz.de" }]
 keywords = ["date", "time", "conversion", "migration", "inclusive", "exclusive", "dateonly"]
 classifiers = [
@@ -13,8 +13,7 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
+    # no python 3.8 and 3.9 because of missing kw_only arg to dataclass
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",

@@ -23,10 +23,11 @@ def _convert_source_date_or_datetime_to_aware_datetime(
     source_value_datetime: datetime  # a non-naive datetime (exclusive, if end)
     if isinstance(source_value, datetime):
         source_value_datetime = source_value
-        if config.source.is_end and config.source.is_inclusive_end:
+        if config.is_end and config.source.is_inclusive_end:
+            assert config.source.resolution is not None  # ensured by the consistency check
             source_value_datetime += config.source.resolution
     elif isinstance(source_value, date):
-        if config.source.is_end and config.source.is_inclusive_end:
+        if config.is_end and config.source.is_inclusive_end:
             source_value_datetime = datetime.combine(source_value + timedelta(days=1), datetime.min.time())
         else:
             source_value_datetime = datetime.combine(source_value, datetime.min.time())
@@ -69,7 +70,8 @@ def _convert_aware_datetime_to_target(value: datetime, config: MappingConfig) ->
             # It might also be 5h or 7h on DST transition days.
             _berlin_local_datetime = _berlin.localize(_berlin_local_datetime)
             target_value = _berlin_local_datetime.astimezone(pytz.utc)
-    if config.target.is_end and config.target.is_inclusive_end:
+    if config.is_end and config.target.is_inclusive_end:
+        assert config.target.resolution is not None  # ensured by the consistency check
         target_value = target_value - config.target.resolution  # converts the exclusive end to an inclusive end
         # and e.g. 2024-01-02 00:00:00 to 2024-01-01 23:59:59 if the resolution is timedelta(seconds=1)
         # Work because the original value is - if it is an end - always an exclusive end.

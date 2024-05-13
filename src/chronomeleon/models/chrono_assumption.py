@@ -13,8 +13,9 @@ class ChronoAssumption:
     represents assumptions about how a specific system interprets a specific field that holds date or time
     """
 
-    resolution: timedelta
+    resolution: Optional[timedelta] = None
     """
+    This is only necessary to provide, if the field is an inclusive end date.
     The smallest unit of time that this field can represent.
     Typically this is something like 1 day, 1 second, 1 microsecond.
     Adding one "unit" of the resolution leads to the smallest possible increase in the field.
@@ -32,11 +33,6 @@ class ChronoAssumption:
     pytz is a dependency of chronomeleon; If you install chronomeleon, you also get pytz.
     """
 
-    is_end: Optional[bool] = None
-    """
-    True if and only if the date or time is the end of a range. None if it doesn't matter.
-    """
-
     is_inclusive_end: Optional[bool] = None
     """
     Must not be None if is_end is True.
@@ -45,3 +41,35 @@ class ChronoAssumption:
     the entire month of January.
     If is_inclusive_end is False, then the range 2024-01-01 to 2024-02-01 covers the entire month of January.
     """
+
+    is_gastag_aware: bool = False
+    """
+    True if and only if the start of a day is 6:00 am German local time.
+    If you never heard of the "Gastag", you can ignore this parameter and let it default to False.
+    """
+
+    is_date_only: bool = False
+    """
+    True if and only if the field in the respective system is a date without a time component (datetime.date).
+    """
+
+    def get_consistency_errors(self) -> list[str]:
+        """
+        returns errors from the self-consistency check; if the returned list is empty, the object is self-consistent
+        """
+        result: list[str] = []
+        if self.is_inclusive_end and self.resolution is None:
+            result.append("if is_inclusive_end is True, then resolution must be set")
+        if self.resolution is not None and not isinstance(self.resolution, timedelta):
+            result.append(f"resolution must be a timedelta object but is {self.resolution.__class__.__name__}")
+        if self.implicit_timezone is not None and not isinstance(self.implicit_timezone, BaseTzInfo):
+            result.append(
+                f"implicit_timezone must be a pytz timezone object but is {self.implicit_timezone.__class__.__name__}"
+            )
+        return result
+
+    def is_self_consistent(self) -> bool:
+        """
+        returns True if the object is self-consistent
+        """
+        return not any(self.get_consistency_errors())

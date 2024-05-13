@@ -9,8 +9,8 @@
 ![Linting status badge](https://github.com/Hochfrequenz/chronomeleon/workflows/Linting/badge.svg)
 ![Black status badge](https://github.com/Hochfrequenz/chronomeleon/workflows/Formatting/badge.svg)
 
-Chronomeleon is a Python package that converts date and time related objects in migration scenarios.
-It's meant to be used when migrate dates, datetimes or time slices/ranges from one system to another.
+Chronomeleon is a Python package that converts and maps date and time information from their representation in one system to another.
+It's meant to be used in data migration projects.
 
 ## Rationale
 While converting a datetime alone is possible with either Python builtin tools or libraries like `pendulum` and `arrow`,
@@ -32,10 +32,16 @@ Chronomeleon has two purposes:
 1. It forces you to make assumptions explicit.
 2. Once the assumptions are explicit, it helps you do the conversion.
 
-The latter is no rocket science (and neither is any code in chronomeleon), but the former is crucial for a successful migration.
+The latter is no rocket science (and neither is any line of code in chronomeleon), but making assumptions explicit is crucial and that's why using it is beneficial.
+
+When you're constantly wondering why other coders seem to randomly
+* add or subtract a day, a second, a tick here and there
+* pass around naive dates and datetimes and try to convert them to UTC or other timezones with no clear reason
+
+then chronomeleon is for you.
 
 Chronomeleon makes your code more readable and makes your assumption clear.
-This allows you to spot errors in your or your team mates code and explain, why things are done the way they are.
+This allows you to spot errors in your or your teammates code more easily and explain why things are done the way they are.
 
 ## How to use it?
 Install it from pypi:
@@ -45,7 +51,29 @@ pip install chronomeleon
 
 Then, in your code: Make assumptions about the source and target system explicit.
 To do so, chronomeleon provides you with so-called ChronoConfig objects.
+
+Here's an advanced example, that shows the capabilities of Chronomeleon:
 ```python
+from datetime import date, datetime, timedelta
+
+import pytz
+
+from chronomeleon import ChronoAssumption, MappingConfig, adapt_to_target
+
+config = MappingConfig( # make assumptions explicit
+    source=ChronoAssumption(
+        implicit_timezone=pytz.timezone("Europe/Berlin"),
+        resolution=timedelta(days=1),
+        is_inclusive_end=True,
+        is_gastag_aware=False,
+    ),
+    target=ChronoAssumption(resolution=timedelta(milliseconds=1), is_inclusive_end=True, is_gastag_aware=True),
+    is_end=True,
+    is_gas=True,
+)
+source_value = date(2021, 12, 31)
+result = adapt_to_target(source_value, config) # do the mapping
+assert result == datetime(2022, 1, 1, 4, 59, 59, microsecond=999000, tzinfo=pytz.utc)
 ```
 
 

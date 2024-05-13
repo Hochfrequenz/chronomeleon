@@ -9,8 +9,8 @@
 ![Linting status badge](https://github.com/Hochfrequenz/chronomeleon/workflows/Linting/badge.svg)
 ![Black status badge](https://github.com/Hochfrequenz/chronomeleon/workflows/Formatting/badge.svg)
 
-Chronomeleon is a Python package that converts date and time related objects in migration scenarios.
-It's meant to be used when migrate dates, datetimes or time slices/ranges from one system to another.
+Chronomeleon is a Python package that converts and maps date and time information from their representation in one system to another.
+It's meant to be used in data migration projects.
 
 ## Rationale
 While converting a datetime alone is possible with either Python builtin tools or libraries like `pendulum` and `arrow`,

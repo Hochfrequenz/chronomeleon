@@ -64,13 +64,13 @@ _dummy_assumption = ChronoAssumption(resolution=timedelta(days=1))
             id="implicit timezone is set as explicit and converted to UTC afterwards (datetime)",
         ),
         pytest.param(
-            datetime(2021, 5, 31, 0, 0, 0).astimezone(pytz.UTC),
+            pytz.utc.localize(datetime(2021, 5, 31, 0, 0, 0)),
             MappingConfig(
                 source=ChronoAssumption(resolution=timedelta(days=1), is_inclusive_end=False),
                 target=_dummy_assumption,
                 is_end=True,
             ),
-            datetime(2021, 5, 30, 22, 0, 0, tzinfo=pytz.UTC),
+            datetime(2021, 5, 31, 0, 0, 0, tzinfo=pytz.UTC),
             id="explicit timezone is converted to UTC (datetime)",
         ),
         pytest.param(

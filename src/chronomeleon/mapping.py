@@ -1,7 +1,7 @@
 """
 This a docstring for the module.
 """
-
+import datetime as dt_module
 from datetime import date, datetime, timedelta, timezone
 from typing import Union
 
@@ -25,14 +25,15 @@ def _convert_date_or_datetime_to_aware_datetime(source_value: Union[date, dateti
         source_value_datetime = source_value
     else:
         raise ValueError(f"source_value must be a date or datetime object but is {source_value.__class__.__name__}")
-    if source_value.tzinfo is None:
+    if source_value_datetime.tzinfo is None:
         if config.source.implicit_timezone is not None:
-            source_value_datetime = timezone.config.source.implicit_timezone.localize(source_value_datetime)
+            source_value_datetime = config.source.implicit_timezone.localize(source_value_datetime)
         else:
             # pylint:disable=line-too-long
             raise ValueError(
                 "source_value must be timezone-aware or implicit_timezone must be set in the mapping configuration"
             )
+    source_value_datetime = source_value_datetime.astimezone(pytz.utc)
     return source_value_datetime
 
 
@@ -47,3 +48,4 @@ def adapt_to_target(source_value: Union[date, datetime], config: MappingConfig) 
     if not config.is_self_consistent():
         raise ValueError("config is not self-consistent: " + ", ".join(config.get_consistency_errors()))
     source_value_datetime = _convert_date_or_datetime_to_aware_datetime(source_value, config)
+    raise NotImplementedError("not yet implemented")

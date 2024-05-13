@@ -50,7 +50,7 @@ pip install chronomeleon
 ```
 
 Then, in your code: Make assumptions about the source and target system explicit.
-To do so, chronomeleon provides you with so-called ChronoConfig objects.
+To do so, chronomeleon provides you with so-called MappingConfig objects.
 
 Here's an advanced example, that shows the capabilities of Chronomeleon:
 ```python

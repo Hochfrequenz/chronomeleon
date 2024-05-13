@@ -4,12 +4,8 @@ from typing import Union
 import pytest
 import pytz
 
-from chronomeleon.mapping import (
-    _convert_aware_datetime_to_target,
-    _convert_source_date_or_datetime_to_aware_datetime,
-    adapt_to_target,
-)
-from chronomeleon.models import ChronoAssumption, MappingConfig
+from chronomeleon import ChronoAssumption, MappingConfig, adapt_to_target
+from chronomeleon.mapping import _convert_aware_datetime_to_target, _convert_source_date_or_datetime_to_aware_datetime
 
 _dummy_assumption = ChronoAssumption(resolution=timedelta(days=1))
 

@@ -2,7 +2,7 @@ from datetime import timedelta
 
 import pytest
 
-from chronomeleon.models import ChronoAssumption
+from chronomeleon import ChronoAssumption
 
 
 @pytest.mark.parametrize(

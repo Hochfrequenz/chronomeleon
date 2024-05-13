@@ -32,10 +32,16 @@ Chronomeleon has two purposes:
 1. It forces you to make assumptions explicit.
 2. Once the assumptions are explicit, it helps you do the conversion.
 
-The latter is no rocket science (and neither is any code in chronomeleon), but the former is crucial for a successful migration.
+The latter is no rocket science (and neither is any line of code in chronomeleon), but making assumptions explicit is crucial and that's why using it is beneficial.
+
+When you're constantly wondering why other coders seem to randomly
+* add or subtract a day, a second, a tick here and there
+* pass around naive dates and datetimes and try to convert them to UTC or other timezones with no clear reason
+
+then chronomeleon is for you.
 
 Chronomeleon makes your code more readable and makes your assumption clear.
-This allows you to spot errors in your or your team mates code and explain, why things are done the way they are.
+This allows you to spot errors in your or your teammates code more easily and explain why things are done the way they are.
 
 ## How to use it?
 Install it from pypi:

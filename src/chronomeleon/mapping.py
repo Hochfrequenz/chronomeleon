@@ -1,6 +1,7 @@
 """
 This a docstring for the module.
 """
+
 import datetime as dt_module
 from datetime import date, datetime, timedelta, timezone
 from typing import Union
@@ -16,13 +17,13 @@ def _convert_date_or_datetime_to_aware_datetime(source_value: Union[date, dateti
     if the source was an inclusive end
     """
     source_value_datetime: datetime  # a non-naive datetime (exclusive, if end)
-    if isinstance(source_value, date):
+    if isinstance(source_value, datetime):
+        source_value_datetime = source_value
+    elif isinstance(source_value, date):
         if config.source.is_end and config.source.is_inclusive_end:
             source_value_datetime = datetime.combine(source_value + timedelta(days=1), datetime.min.time())
         else:
             source_value_datetime = datetime.combine(source_value, datetime.min.time())
-    elif isinstance(source_value, datetime):
-        source_value_datetime = source_value
     else:
         raise ValueError(f"source_value must be a date or datetime object but is {source_value.__class__.__name__}")
     if source_value_datetime.tzinfo is None:
@@ -33,6 +34,8 @@ def _convert_date_or_datetime_to_aware_datetime(source_value: Union[date, dateti
             raise ValueError(
                 "source_value must be timezone-aware or implicit_timezone must be set in the mapping configuration"
             )
+    if isinstance(source_value, datetime) and config.source.is_end and config.source.is_inclusive_end:
+        source_value_datetime = source_value_datetime + config.source.resolution
     source_value_datetime = source_value_datetime.astimezone(pytz.utc)
     return source_value_datetime
 

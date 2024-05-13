@@ -62,7 +62,7 @@ from chronomeleon.models import ChronoAssumption, MappingConfig
             id="implicit timezone is set as explicit and converted to UTC afterwards (datetime)",
         ),
         pytest.param(
-            pytz.timezone("Europe/Berlin").localize(datetime(2021, 5, 31, 0, 0, 0)),
+            datetime(2021, 5, 31, 0, 0, 0).astimezone(pytz.UTC),
             MappingConfig(
                 source=ChronoAssumption(resolution=timedelta(days=1), is_end=True, is_inclusive_end=False),
                 target=ChronoAssumption(resolution=timedelta(days=1)),

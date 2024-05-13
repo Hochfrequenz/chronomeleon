@@ -3,7 +3,7 @@ This a docstring for the module.
 """
 
 import datetime as dt_module
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime, timedelta
 from typing import Union
 
 import pytz

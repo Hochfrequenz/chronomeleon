@@ -1,5 +1,4 @@
 # Chronomeleon
-🚧 Still Work In Progress!
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 ![Python Versions (officially) supported](https://img.shields.io/pypi/pyversions/chronomeleon.svg)

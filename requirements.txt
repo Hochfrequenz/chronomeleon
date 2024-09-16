@@ -4,5 +4,5 @@
 #
 #    pip-compile pyproject.toml
 #
-pytz==2024.1
+pytz==2024.2
     # via chronomeleon (pyproject.toml)

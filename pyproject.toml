@@ -47,7 +47,7 @@ tests = [
 ]
 type_check = [
     "mypy==1.14.0",
-    "types-pytz==2024.2.0.20241003"
+    "types-pytz==2024.2.0.20241221"
 ]
 
 [project.urls]

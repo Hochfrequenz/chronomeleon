@@ -26,14 +26,14 @@ dynamic = ["readme", "version"]
 
 [project.optional-dependencies]
 coverage = [
-    "coverage==7.9.2"
+    "coverage==7.10.6"
 ]
 formatting = [
     "black==25.1.0",
     "isort==6.0.1"
 ]
 linting = [
-    "pylint==3.3.7"
+    "pylint==3.3.8"
 ]
 spellcheck = [
     "codespell==2.4.1"
@@ -46,8 +46,8 @@ tests = [
     "pytest==8.4.1"
 ]
 type_check = [
-    "mypy==1.17.0",
-    "types-pytz==2025.2.0.20250516"
+    "mypy==1.17.1",
+    "types-pytz==2025.2.0.20250809"
 ]
 
 [project.urls]

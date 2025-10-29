@@ -26,14 +26,14 @@ dynamic = ["readme", "version"]
 
 [project.optional-dependencies]
 coverage = [
-    "coverage==7.10.6"
+    "coverage==7.11.0"
 ]
 formatting = [
     "black==25.1.0",
-    "isort==6.0.1"
+    "isort==7.0.0"
 ]
 linting = [
-    "pylint==3.3.9"
+    "pylint==4.0.0"
 ]
 spellcheck = [
     "codespell==2.4.1"

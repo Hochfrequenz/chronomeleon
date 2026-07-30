@@ -1,5 +1,4 @@
 from datetime import date, datetime, timedelta
-from typing import Union
 
 import pytest
 import pytz
@@ -137,7 +136,7 @@ _dummy_assumption = ChronoAssumption(resolution=timedelta(days=1))
     ],
 )
 def test_convert_source_date_or_datetime_to_aware_datetime(
-    source_value: Union[datetime, date], config: MappingConfig, expected: datetime
+    source_value: datetime | date, config: MappingConfig, expected: datetime
 ):
     actual = _convert_source_date_or_datetime_to_aware_datetime(source_value, config)  # pylint:disable=protected-access
     assert actual.tzinfo is not None
@@ -246,8 +245,7 @@ def test_convert_aware_datetime_to_target(intermediate_value: datetime, config: 
                 is_gas=True,
             ),
             datetime(2023, 12, 31, 22, 59, 59, 999999, tzinfo=pytz.UTC),
-            # pylint:disable=line-too-long
-            id="an exclusive, Gastag aware end**date** with implicit Berlin timezone is converted to an inclusive, Gastag unaware enddate in a system with a 1us resolution",
+            id="an exclusive, Gastag aware end**date** with implicit Berlin timezone is converted to an inclusive, Gastag unaware enddate in a system with a 1us resolution",  # noqa: E501
         ),
         pytest.param(
             date(2023, 12, 31),
@@ -267,8 +265,7 @@ def test_convert_aware_datetime_to_target(intermediate_value: datetime, config: 
                 is_gas=True,
             ),
             datetime(2023, 12, 31, 23, 0, 0, 0, tzinfo=pytz.UTC),
-            # pylint:disable=line-too-long
-            id="an inclusive, Gastag aware enddate with implicit Berlin timezone is converted to an exclusive, Gastag aware enddate in a system with a 1d resolution",
+            id="an inclusive, Gastag aware enddate with implicit Berlin timezone is converted to an exclusive, Gastag aware enddate in a system with a 1d resolution",  # noqa: E501
         ),
         pytest.param(
             datetime(2034, 4, 5, 6, 7, 8),

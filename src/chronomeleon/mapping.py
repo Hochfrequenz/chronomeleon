@@ -4,7 +4,6 @@ This a docstring for the module.
 
 import datetime as dt_module
 from datetime import date, datetime, timedelta
-from typing import Union
 
 import pytz
 
@@ -14,7 +13,7 @@ _berlin = pytz.timezone("Europe/Berlin")
 
 
 def _convert_source_date_or_datetime_to_aware_datetime(
-    source_value: Union[date, datetime], config: MappingConfig
+    source_value: date | datetime, config: MappingConfig
 ) -> datetime:
     """
     returns a datetime object which is aware of the timezone (i.e. not naive) and is an exclusive end
@@ -82,7 +81,7 @@ def _convert_aware_datetime_to_target(value: datetime, config: MappingConfig) ->
     return target_value
 
 
-def adapt_to_target(source_value: Union[date, datetime], config: MappingConfig) -> datetime:
+def adapt_to_target(source_value: date | datetime, config: MappingConfig) -> datetime:
     """
     maps the source value to a value compatible with the target system by using the given mapping configuration
     """

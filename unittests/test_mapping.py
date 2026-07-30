@@ -138,7 +138,7 @@ _dummy_assumption = ChronoAssumption(resolution=timedelta(days=1))
 def test_convert_source_date_or_datetime_to_aware_datetime(
     source_value: datetime | date, config: MappingConfig, expected: datetime
 ):
-    actual = _convert_source_date_or_datetime_to_aware_datetime(source_value, config)  # pylint:disable=protected-access
+    actual = _convert_source_date_or_datetime_to_aware_datetime(source_value, config)
     assert actual.tzinfo is not None
     assert actual == expected
 

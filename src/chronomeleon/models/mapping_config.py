@@ -1,7 +1,6 @@
 """contains the Mapping configuration class"""
 
 from dataclasses import dataclass
-from typing import Optional
 
 from .chrono_assumption import ChronoAssumption
 
@@ -21,12 +20,12 @@ class MappingConfig:
     assumptions about the interpretation of the date(time) field in the source system
     """
 
-    is_end: Optional[bool] = None
+    is_end: bool | None = None
     """
     True if and only if the date or time is the end of a range. None if it doesn't matter.
     """
 
-    is_gas: Optional[bool] = None
+    is_gas: bool | None = None
     """
     True if the sparte is Gas.
     Set to true to trigger the gas tag modifications in source, target or both, if necessary. Ignore otherwise.

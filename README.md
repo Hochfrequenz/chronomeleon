@@ -6,7 +6,7 @@
 ![Unittests status badge](https://github.com/Hochfrequenz/chronomeleon/workflows/Unittests/badge.svg)
 ![Coverage status badge](https://github.com/Hochfrequenz/chronomeleon/workflows/Coverage/badge.svg)
 ![Linting status badge](https://github.com/Hochfrequenz/chronomeleon/workflows/Linting/badge.svg)
-![Black status badge](https://github.com/Hochfrequenz/chronomeleon/workflows/Formatting/badge.svg)
+![Formatting status badge](https://github.com/Hochfrequenz/chronomeleon/workflows/Formatting/badge.svg)
 
 Chronomeleon is a Python package that converts and maps date and time information from their representation in one system to another.
 It's meant to be used in data migration projects.

@@ -2,7 +2,6 @@
 
 from dataclasses import dataclass
 from datetime import timedelta
-from typing import Optional
 
 from pytz import BaseTzInfo
 
@@ -13,7 +12,7 @@ class ChronoAssumption:
     represents assumptions about how a specific system interprets a specific field that holds date or time
     """
 
-    resolution: Optional[timedelta] = None
+    resolution: timedelta | None = None
     """
     This is only necessary to provide, if the field is an inclusive end date.
     The smallest unit of time that this field can represent.
@@ -23,7 +22,7 @@ class ChronoAssumption:
     But if the resolution is 1 second, then the next possible value after 2024-01-01 00:00:00 is 2024-01-01 00:00:01.
     """
 
-    implicit_timezone: Optional[BaseTzInfo] = None
+    implicit_timezone: BaseTzInfo | None = None
     """
     Systems often don't provide an explicit UTC offset with their date or time fields.
     In this case, the system implicitly uses a specific timezone.
@@ -33,7 +32,7 @@ class ChronoAssumption:
     pytz is a dependency of chronomeleon; If you install chronomeleon, you also get pytz.
     """
 
-    is_inclusive_end: Optional[bool] = None
+    is_inclusive_end: bool | None = None
     """
     Must not be None if is_end is True.
     True if and only if the end of the range is inclusive.

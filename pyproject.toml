@@ -29,16 +29,14 @@ dynamic = ["readme", "version"]
 Changelog = "https://github.com/Hochfrequenz/chronomeleon/releases"
 Homepage = "https://github.com/Hochfrequenz/chronomeleon"
 
-[tool.black]
+[tool.ruff]
 line-length = 120
-target_version = ["py310", "py311", "py312", "py313", "py314"]
+target-version = "py310"
+extend-exclude = ["*.md"]
 
-[tool.isort]
-line_length = 120
-profile = "black"
-
-[tool.pylint."MESSAGES CONTROL"]
-max-line-length = 120
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "UP", "B", "N", "PL", "RUF"]
+ignore = ["PLR0913", "PLR0917", "PLR0912", "PLR0915", "RUF001", "RUF002", "RUF003"]
 
 [mypy]
 truethy-bool = true
@@ -48,18 +46,19 @@ disable_error_code = ["no-untyped-def", "no-untyped-call"]
 
 [dependency-groups]
 tests = ["pytest==9.1.1"]
-linting = ["pylint==4.0.6", { include-group = "tests" }]
+linting = [
+    { include-group = "tests" },
+    "ruff==0.16.0",
+]
 type_check = ["mypy==2.3.0", "types-pytz==2026.2.0.20260518", { include-group = "tests" }]
 spell_check = ["codespell==2.4.3"]
 coverage = ["coverage==7.15.2", { include-group = "tests" }]
-formatting = ["black==26.5.1", "isort==8.0.1"]
 dev = [
     { include-group = "tests" },
     { include-group = "linting" },
     { include-group = "type_check" },
     { include-group = "coverage" },
     { include-group = "spell_check" },
-    { include-group = "formatting" },
     "pre-commit",
 ]
 

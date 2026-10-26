@@ -2,7 +2,7 @@
 name = "chronomeleon"
 description = "A python package to flexibly adapt start and end date(times) to your system background"
 license = { text = "MIT" }
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 authors = [{ name = "Hochfrequenz Unternehmensberatung GmbH", email = "info+github@hochfrequenz.de" }]
 keywords = ["date", "time", "conversion", "migration", "inclusive", "exclusive", "dateonly"]
 classifiers = [

@@ -52,7 +52,7 @@ linting = [
 ]
 type_check = ["mypy==2.4.1", "types-pytz==2026.5.0.20261006", { include-group = "tests" }]
 spell_check = ["codespell==2.4.3"]
-coverage = ["coverage==7.17.0", { include-group = "tests" }]
+coverage = ["coverage==7.17.2", { include-group = "tests" }]
 dev = [
     { include-group = "tests" },
     { include-group = "linting" },

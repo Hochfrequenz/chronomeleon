@@ -48,7 +48,7 @@ disable_error_code = ["no-untyped-def", "no-untyped-call"]
 tests = ["pytest==9.2.0"]
 linting = [
     { include-group = "tests" },
-    "ruff==0.17.4",
+    "ruff==0.17.5",
 ]
 type_check = ["mypy==2.4.1", "types-pytz==2026.6.0.20261031", { include-group = "tests" }]
 spell_check = ["codespell==2.4.3"]
